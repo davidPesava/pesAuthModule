@@ -1,5 +1,6 @@
 <template>
 		<v-container fluid>
+			<Logo />
 			<v-row>
 				<v-col cols="12">
 					<h1 v-if="currentUser" class="mb-5">Welcome user id: {{ currentUser.uid }}</h1>
@@ -31,13 +32,14 @@
 </template>
 
 <script>
-	import LoginForm from "../components/LoginForm"
-	import RegisterForm from "../components/RegisterForm"
-	import LogOutButton from "../components/LogOutButton"
+	import LoginForm from "../components/auth/LoginForm"
+	import RegisterForm from "../components/auth/RegisterForm"
+	import LogOutButton from "../components/auth/LogOutButton"
+	import Logo from "../components/layout/Logo"
 
 	export default {
 		components: {
-			LoginForm, RegisterForm, LogOutButton
+			LoginForm, RegisterForm, LogOutButton, Logo
 		},
 		middleware: 'router-auth',
 		data() {
