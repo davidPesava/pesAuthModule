@@ -53,7 +53,7 @@
 					let val = JSON.parse(JSON.stringify(user.user))
 					this.$store.commit('users/setCurrentUser', val)
 					// Get Data from firestore
-					let allUsers = firebase.firestore().collection('users').doc(val.uid);
+					let allUsers = firebase.firestore().collection('users').doc(val.uid)
 					let getDoc = allUsers.get()
 						.then(doc => {
 							if (!doc.exists) {
@@ -65,7 +65,7 @@
 							}
 						})
 						.catch(err => {
-							console.log('Error getting document', err);
+							console.log('Error getting document', err)
 						});
 				}).catch(err => {
 						this.loginError = err.message

@@ -4,7 +4,6 @@
 			<v-row>
 				<v-col cols="12">
 					<h1 v-if="currentUser" class="mb-5">Welcome user id: {{ currentUser.uid }}</h1>
-					<h2 v-if="credential" class="mb-5">{{ credential.name }}</h2>
 				</v-col>
 				<v-col md="6" cols="12">
 					<login-form
@@ -50,11 +49,11 @@
 		},
 		created: function () {
 			this.getDataFromChild()
+			
 		},
 		methods: {
 			getDataFromChild() {
 				this.currentUser = this.$store.state.users.currentUser
-				this.credential = this.$store.state.users.credentials
 			},
 		},
 	}

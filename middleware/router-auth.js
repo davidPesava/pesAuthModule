@@ -7,5 +7,6 @@ export default function({ app,store, redirect, route }) {
       if (route.matched.some(record => record.path == '/db') && store.state.users.currentUser == null) {
         redirect("/")
       }
+
       resolve(val)
   }))}
