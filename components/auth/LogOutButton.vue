@@ -11,6 +11,7 @@
 			logOut() {
 				let val = null
 				this.$store.commit('users/setCurrentUser', val)
+				this.$cookies.remove('current-user-investKeep')
 				this.$router.go('/')
 			}
 		},

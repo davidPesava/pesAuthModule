@@ -60,6 +60,10 @@
 							} else {
 								let val = JSON.parse(JSON.stringify(doc.data()))
 								this.$store.commit('users/setCredentials', val)
+								this.$cookies.set('current-user-investKeep', val, {
+									path: '/',
+									maxAge: 60 * 60 // 1 hour of life for cookie 
+								})								
 								this.$emit('updateUser')
 							}
 						})

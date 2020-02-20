@@ -1,4 +1,8 @@
-export default function({ store, redirect, route }) {
+export default function({ app,store, redirect, route }) {
+    const cookieRes = app.$cookies.get('current-user-investKeep')
+    if(cookieRes) {
+        store.commit('users/setCurrentUser', cookieRes) 
+    }
     if (route.matched.some(record => record.path == '/db') && store.state.users.currentUser == null) {
       redirect("/")
     }
