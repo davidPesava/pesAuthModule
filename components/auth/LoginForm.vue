@@ -49,6 +49,7 @@
 			login() {
 				//Login user
 				firebase.auth().signInWithEmailAndPassword(this.loginForm.email, this.loginForm.password).then(user => {
+
 					let val = JSON.parse(JSON.stringify(user.user))
 					this.$store.commit('users/setCurrentUser', val)
 					// Get Data from firestore

@@ -1,8 +1,18 @@
+import firebase from 'firebase'
+
 export default function({ app,store, redirect, route }) {
-    const cookieRes = app.$cookies.get('current-user-investKeep')
-    if(cookieRes) {
-        store.commit('users/setCurrentUser', cookieRes) 
-    }
+    //const cookieRes = app.$cookies.get('current-user-investKeep')
+    //if(cookieRes) {
+    //    store.commit('users/setCurrentUser', cookieRes) 
+    // }
+
+    
+    firebase.auth().onAuthStateChanged(user => {
+      let val = JSON.parse(JSON.stringify(user))
+      store.commit('users/setCurrentUser', val)
+      console.log(store.state.users.currentUser)
+    })
+    
 
     if (route.matched.some(record => record.path == '/db') && store.state.users.currentUser == null) {
       redirect("/")
