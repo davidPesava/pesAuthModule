@@ -5,13 +5,14 @@
 </template>
 
 <script>
+	import firebase from 'firebase'
 	export default {
 		name: "LogOutButton",
 		methods: {
 			logOut() {
 				let val = null
 				this.$store.commit('users/setCurrentUser', val)
-				this.$cookies.remove('current-user-investKeep')
+				firebase.auth().signOut()
 				this.$router.go('/')
 			}
 		},

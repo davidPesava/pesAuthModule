@@ -1,33 +1,11 @@
 import firebase from 'firebase'
 
 export default function({ app,store, redirect, route }) {
-    //const cookieRes = app.$cookies.get('current-user-investKeep')
-    //if(cookieRes) {
-    //    store.commit('users/setCurrentUser', cookieRes) 
-    // }
-
-    
-    firebase.auth().onAuthStateChanged(user => {
+    return new Promise((resolve, reject) => firebase.auth().onAuthStateChanged(user => {
       let val = JSON.parse(JSON.stringify(user))
       store.commit('users/setCurrentUser', val)
-      console.log(store.state.users.currentUser)
-    })
-    
-
-    if (route.matched.some(record => record.path == '/db') && store.state.users.currentUser == null) {
-      redirect("/")
-    }
-
-    
-  // store.state.user != null && route.name == 'login' ? redirect('/admin') : ''
-  // store.state.user == null && isAdminRoute(route) ? redirect('/') : ''
-  //
-  //
-  // function isAdminRoute(route) {
-  //   if (route.matched.some(record => record.path == '/db')) {
-  //     return true
-  //   }
-  // }
-}
-
-
+      if (route.matched.some(record => record.path == '/db') && store.state.users.currentUser == null) {
+        redirect("/")
+      }
+      resolve(val)
+  }))}
