@@ -3,9 +3,12 @@ export default function({ app,store, redirect, route }) {
     if(cookieRes) {
         store.commit('users/setCurrentUser', cookieRes) 
     }
+
     if (route.matched.some(record => record.path == '/db') && store.state.users.currentUser == null) {
       redirect("/")
     }
+
+    
   // store.state.user != null && route.name == 'login' ? redirect('/admin') : ''
   // store.state.user == null && isAdminRoute(route) ? redirect('/') : ''
   //
